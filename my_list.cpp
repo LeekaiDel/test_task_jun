@@ -50,7 +50,7 @@ void ListNodeWrapper::write_pair_vector(std::vector< std::pair<std::string, int>
   }
 
   // Теперь будем перебирать все узлы и сверять их индекс в списке с значением rand
-  ListNode* prnt_p = this->head; // Возьмем вервый узел и будем искать узел, на который он ссылается через rand
+  ListNode* prnt_p = this->head;      // Возьмем первый узел и будем искать узел, на который он ссылается через rand
   for(const auto& pair : pair_vector) // Делаем перебор всех rand в векторе полученных данных из файла
   {
     // Важно, чтобы индексы rand в pair_vector располагались в той же последовательности, что и дата из этого вектора в листе
@@ -211,23 +211,31 @@ int DataSerialisation::read_lines(std::ifstream *file)
   std::string line;
   std::string str;
   int rand;
-  int g = 0;
   while(std::getline(*file, line))
   {
     std::stringstream ss(line);
     std::getline(ss, str, ';');
+    // Задаем ограничение входных строк по длине 1000
+    if(str.size() > 1000)
+    {
+      std::cerr << "Поле data превишает лимит в 1000 символов! Этот узел будет пропущен." << std::endl;
+      continue;
+    }
     ss >> rand;
-    temp_pair_v.push_back(std::pair<std::string, int>(str, rand));
-    // std::cout << str << ";" << rand << std::endl;
-    ++g;
+
+    if(temp_pair_v.size() <= 1'000'000)
+      temp_pair_v.push_back(std::pair<std::string, int>(str, rand));
+    else 
+      std::cerr << "Максимальное количество узлов в списке(1 000 000) превышено, все последующие узлы будут пропущены." << std::endl;
+    
   }
 
-  if(g > 0)
+  if(temp_pair_v.size())
   {
     list_node_wrapper.write_pair_vector(temp_pair_v);
   }
 
-  return g;
+  return temp_pair_v.size();
 }
 
 
