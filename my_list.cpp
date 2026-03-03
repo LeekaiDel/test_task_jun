@@ -187,7 +187,7 @@ ListNodeWrapper::~ListNodeWrapper()
 }
 
 
-int DataSerialisation::read_inpt_data(const char *file_name)
+int DataSerialisation::read_inpt_data(std::string file_name)
 {
   std::ifstream file(file_name); // Путь к файлу с входными данными
   if(!file.is_open())

@@ -48,7 +48,7 @@ class DataSerialisation
 public:
     ListNodeWrapper list_node_wrapper;
     // Читаем входные данные и сразу формируем из них двусвязный список
-    int read_inpt_data(const char *file_name);
+    int read_inpt_data(std::string file_name);
     // Сериализуем наш список в файл
     int write_serialize_data(const char *file_name);
     ~DataSerialisation();
