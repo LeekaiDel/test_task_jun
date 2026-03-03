@@ -4,7 +4,7 @@
 int main()
 {
   DataSerialisation ds;
-  ds.read_inpt_data("../c_cpp_ws_polygon/task_junior/inlet.in");
+  ds.read_inpt_data("../inlet.in");
   // std::cout << ds.list_node_wrapper.size() << std::endl;
   ds.write_serialize_data("outlet.out");
 
