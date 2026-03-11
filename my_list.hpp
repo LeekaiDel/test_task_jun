@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <cstdint>
+#include <unordered_map>
 
 /*  Реализация кастомного двусвязного списка с дополнительным указателем rand,
     который сслается на произвольный узел списка
@@ -24,14 +25,12 @@ public:
     void push_back(std::string data);
 
     // Заполняем структуру из вектора пар. Данный метод сразу создает структуру с указателем rand на нужное поле
-    void write_pair_vector(std::vector< std::pair<std::string, int> > pair_vector);
+    void write_pair_vector(const std::vector< std::pair<std::string, int> > &pair_vector);
     // Читаем структуру в вектор пар. Данный метод сразу возвращает структуру с указателем rand на нужное поле
-    void read_pair_vector(std::vector< std::pair<std::string, int> > &pair_vector);
+    void read_pair_vector(std::vector< std::pair<std::string, int> > &pair_vector) const;
 
     // Метод позволяет получить данные по индексу как для обычного двусвязного списка
-    std::string at(int index);
-    // Метод позволяет получить данные по интексу по связи через указатель rand
-    std::string at_via_rand(int index);
+    std::string at(int index) const;
     // Метод возвращает количество узлов в списке
     int32_t size() { return sz; };
     ~ListNodeWrapper();
