@@ -1,29 +1,5 @@
 #include "my_list.hpp"
 
-
-void ListNodeWrapper::push_back(std::string data) // Не используется
-{
-  if(this->head == nullptr)
-  {
-    this->head = new ListNode();
-    this->head->data = data;
-  }
-  else
-  {
-    ListNode* temp_p = this->head;
-    while(temp_p->next != nullptr)
-    {
-      temp_p = temp_p->next;
-    }
-    temp_p->next = new ListNode();
-    temp_p->next->prev = temp_p;
-    temp_p->next->data = data;
-    this->tail = temp_p->next;
-  }
-  ++sz;
-}
-
-
 void ListNodeWrapper::write_pair_vector(const std::vector< std::pair<std::string, int> > &pair_vector)
 {
   std::vector<ListNode*> p_node_list_v;
